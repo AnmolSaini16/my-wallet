@@ -76,7 +76,6 @@ const TransactionForm = ({
         <DialogHeader>
           <DialogTitle>{formName}</DialogTitle>
         </DialogHeader>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} id="add-transaction">
             <div className="grid grid-cols-3 gap-4 py-4">
