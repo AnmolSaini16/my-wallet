@@ -9,12 +9,10 @@ type Props = {
 
 export default async function Overview({ transactions }: Props) {
   return (
-    <CardWrapper
-      title="Overview"
-      actionConent={<Filters />}
-      className="h-[calc(100vh-360px)] ml-2"
-    >
-      <BarChat transactions={transactions} />
+    <CardWrapper title="Overview" actionConent={<Filters />}>
+      <div className="ml-2 h-[calc(100vh-400px)]">
+        <BarChat transactions={transactions} />
+      </div>
     </CardWrapper>
   );
 }

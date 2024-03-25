@@ -15,17 +15,17 @@ export default async function LatestTransactions({ transactions }: Props) {
     <CardWrapper
       title="Latest Transactions"
       actionConent={<ActioncContent />}
-      className="h-[calc(100vh-400px)] overflow-auto space-y-6"
+      className="max-h-[450px]"
     >
-      {!transactions?.length ? (
-        <p className="text-center text-muted-foreground">No Data</p>
-      ) : (
-        <>
-          {transactions.map((transaction) => (
+      <div className="overflow-auto space-y-6 h-full">
+        {!transactions?.length ? (
+          <p className="text-center text-muted-foreground">No Data</p>
+        ) : (
+          transactions.map((transaction) => (
             <TransactionRow key={transaction.id} transaction={transaction} />
-          ))}
-        </>
-      )}
+          ))
+        )}
+      </div>
     </CardWrapper>
   );
 }
