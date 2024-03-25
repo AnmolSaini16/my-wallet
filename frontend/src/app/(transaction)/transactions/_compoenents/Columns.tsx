@@ -121,7 +121,7 @@ export const TransactionTableColumnsDef: DataTableColumnDef<Transaction> = {
       ),
       cell: ({ row }) => {
         return (
-          <div className="max-w-[200px] truncate font-medium">
+          <div className="w-[200px] truncate font-medium">
             {row.getValue("note")}
           </div>
         );
