@@ -27,6 +27,7 @@ import {
 
 import { DataTableToolbar } from "./components/DataTableToolbar";
 import { DataTableConfig } from "@/types/dataTable.types";
+import { DataTablePagination } from "./components/DataTablePagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -66,7 +67,7 @@ export default function CustomTable<TData, TValue>({
   });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       <DataTableToolbar table={table} filterConfig={config} />
       <div className="rounded-md border">
         <Table>
@@ -118,7 +119,7 @@ export default function CustomTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* <DataTablePagination table={table} /> */}
+      <DataTablePagination table={table} />
     </div>
   );
 }

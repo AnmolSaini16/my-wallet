@@ -81,10 +81,17 @@ export class TransactionService {
       throw new NotFoundException(ErrorMessage.InvalidTransaction);
     }
 
-    const updatedAmount = initialTransaction.amount - dto.amount;
-
-    if (updatedAmount !== 0) {
-    }
+    // Delete previous transaction and update balance
+    await Promise.all([
+      this.prismaSerice.transaction.delete({ where: { id } }),
+      this.accountService.updateBalance(
+        initialTransaction.accountId,
+        initialTransaction.amount,
+        initialTransaction.type === TransactionTypeEnum.Income
+          ? BankBalanceUpdateType.Decrement
+          : BankBalanceUpdateType.Increment,
+      ),
+    ]);
 
     //Create Transaction
     const updatedTransaction = await this.prismaSerice.transaction.create({
@@ -103,6 +110,16 @@ export class TransactionService {
         },
       },
     });
+
+    ///update to latest balance
+    await this.accountService.updateBalance(
+      updatedTransaction.accountId,
+      updatedTransaction.amount,
+      updatedTransaction.type === TransactionTypeEnum.Income
+        ? BankBalanceUpdateType.Increment
+        : BankBalanceUpdateType.Decrement,
+    );
+
     //Return updated transaction
     return updatedTransaction;
   }
