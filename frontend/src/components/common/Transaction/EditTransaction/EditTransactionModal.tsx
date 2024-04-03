@@ -55,7 +55,7 @@ const EditTransactionModal = ({ open, setOpen, transaction }: Props) => {
 
       if (response.status === 200) {
         toast({
-          title: "Transaction added",
+          title: "Transaction edited",
           action: <CheckCircle2 className="text-green-400" />,
         });
         router.refresh();
