@@ -16,16 +16,14 @@ export const TransactionRow = ({
     <>
       <div className="flex items-center gap-2" key={`${transaction.id}`}>
         <div>
-          {
-            <TransactionOperations
-              transaction={transaction}
-              triggerBtn={
-                <div className="flex h-10 w-4 items-center justify-center rounded-xl transition-colors hover:bg-muted">
-                  <MoreVertical className="h-4 w-4" />
-                </div>
-              }
-            />
-          }
+          <TransactionOperations
+            transaction={transaction}
+            triggerBtn={
+              <div className="flex h-10 w-4 items-center justify-center rounded-xl transition-colors hover:bg-muted">
+                <MoreVertical className="h-4 w-4" />
+              </div>
+            }
+          />
         </div>
         <div>
           <TransactionTagIcon

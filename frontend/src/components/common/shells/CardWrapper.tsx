@@ -16,12 +16,12 @@ const CardWrapper = ({
   ...props
 }: Props) => {
   return (
-    <Card className="h-[calc(100vh-285px)]" {...props}>
+    <Card className={cn("h-[calc(100vh-285px)]", className)} {...props}>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-lg">{title}</CardTitle>
         {actionConent}
       </CardHeader>
-      <CardContent className={className}>{children}</CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 };
