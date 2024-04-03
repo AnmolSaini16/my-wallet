@@ -29,14 +29,7 @@ const getToken = async () => {
     return serverSession?.token ?? null;
   }
 
-  const token = localStorage.getItem("token");
-
-  if (token !== "undefined" && token !== null) {
-    return token;
-  }
-
   const session = await getSession();
-  localStorage.setItem("token", session?.token as string);
   return session?.token ?? null;
 };
 

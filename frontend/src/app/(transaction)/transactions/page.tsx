@@ -8,7 +8,9 @@ export default async function TransactionsPage() {
 
   return (
     <MainShell title="Transactions" primaryAction={<AddTransactionButton />}>
-      <TransactionTable transactions={transactions} />
+      <div className="px-4 ">
+        <TransactionTable transactions={transactions} />
+      </div>
     </MainShell>
   );
 }
