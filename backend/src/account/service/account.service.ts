@@ -14,8 +14,8 @@ export class AccountService {
 
     //Dont allow to add more than 2 accounts
     //Todo - Add subsscription service
-    if (accounts?.length === 3) {
-      throw new BadRequestException('Cannot add more than 3 accounts');
+    if (accounts?.length === 2) {
+      throw new BadRequestException('Cannot add more than 2 accounts');
     }
 
     // Else create account

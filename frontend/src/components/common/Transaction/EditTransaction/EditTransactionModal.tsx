@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { toast } from "@/components/ui/use-toast";
 import { getAllAccounts } from "@/lib/query/accounts";
-import { createTransaction, editTransaction } from "@/lib/query/transactions";
+import { editTransaction } from "@/lib/query/transactions";
 import { EditTransacton, Transaction } from "@/types/transaction.types";
 import TransactionForm from "../TransactionForm";
 import { Account } from "@/types/accounts.types";
@@ -23,22 +23,21 @@ const EditTransactionModal = ({ open, setOpen, transaction }: Props) => {
   const [accountsList, setAccountsList] = useState<Account[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [initialValues] = useState<EditTransacton>({
-    id: transaction.id,
-    accountId: transaction.accountId,
-    accountName: transaction.accountName,
-    type: transaction.type,
-    amount: transaction.amount,
-    tag: transaction.tag,
-    note: transaction.note,
-    createdAt: transaction.createdAt,
-  });
 
   const form = useForm<EditTransacton>({
     defaultValues: {
-      ...initialValues,
+      id: transaction.id,
+      accountId: transaction.accountId,
+      accountName: transaction.accountName,
+      type: transaction.type,
+      amount: transaction.amount,
+      tag: transaction.tag,
+      note: transaction.note,
+      createdAt: transaction.createdAt,
     },
   });
+
+  const { isDirty } = form.formState;
 
   const handleEditTransaction: SubmitHandler<EditTransacton> = async (data) => {
     setLoading(true);
@@ -83,7 +82,7 @@ const EditTransactionModal = ({ open, setOpen, transaction }: Props) => {
     };
     fetchUserAccounts();
   }, []);
-  console.log(accountsList);
+
   return (
     <TransactionForm
       open={open}
@@ -91,9 +90,7 @@ const EditTransactionModal = ({ open, setOpen, transaction }: Props) => {
       form={form}
       handleSubmit={handleEditTransaction}
       loading={loading}
-      disabled={
-        JSON.stringify(form.getValues()) === JSON.stringify(initialValues)
-      }
+      disabled={!isDirty}
       errorMessage={errorMessage}
       accountsList={accountsList}
       formName="Edit Transaction"
