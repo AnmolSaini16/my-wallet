@@ -9,14 +9,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { TransactionService } from '../service/transaction.service';
 import { CreateTransactionDto } from '../dto/createTransaction';
-import { User } from 'src/shared/decorator/user.decorator';
-import { UserDto } from 'src/shared/dto/user.dto';
 import { EditTransactionDto } from '../dto/editTransaction.dto';
 import { DeleteTransactionDto } from '../dto/deleteTransaction.dto';
 import { TransactionSearchQuery } from '../query/transactionsSearchQuery';
+import { AuthGuard } from '../../auth/guard/auth.guard';
+import { User } from '../../shared/decorator/user.decorator';
+import { UserDto } from '../../shared/dto/user.dto';
 
 @UseGuards(AuthGuard)
 @Controller('transaction')

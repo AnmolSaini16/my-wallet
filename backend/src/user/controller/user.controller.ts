@@ -1,17 +1,10 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Patch,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
 
 import { UserService } from '../service/user.service';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { UserDto } from 'src/shared/dto/user.dto';
-import { User } from 'src/shared/decorator/user.decorator';
-import { UpdateUserDto } from 'src/shared/dto/updateUser.dto';
+import { AuthGuard } from '../../auth/guard/auth.guard';
+import { User } from '../../shared/decorator/user.decorator';
+import { UpdateUserDto } from '../../shared/dto/updateUser.dto';
+import { UserDto } from '../../shared/dto/user.dto';
 
 @UseGuards(AuthGuard)
 @Controller('user')

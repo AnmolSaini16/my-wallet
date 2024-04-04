@@ -1,8 +1,8 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { AddAccountDto } from '../dto/addAccount.dto';
-import { BankBalanceUpdateType } from 'src/shared/enum/common.enum';
 import { EditAccountDto } from '../dto/editAccount.dto';
+import { BankBalanceUpdateType } from '../../shared/enum/common.enum';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class AccountService {

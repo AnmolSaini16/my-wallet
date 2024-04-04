@@ -10,9 +10,9 @@ import {
   Min,
 } from 'class-validator';
 import {
-  TransactionTagEnum,
   TransactionTypeEnum,
-} from 'src/shared/enum/expense.enum';
+  TransactionTagEnum,
+} from '../../shared/enum/expense.enum';
 
 export class CreateTransactionDto {
   @IsEnum(TransactionTypeEnum)
