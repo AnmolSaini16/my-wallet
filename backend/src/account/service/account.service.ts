@@ -1,8 +1,8 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { AddAccountDto } from '../dto/addAccount.dto';
-import { BankBalanceUpdateType } from 'src/shared/enum/common.enum';
 import { EditAccountDto } from '../dto/editAccount.dto';
+import { BankBalanceUpdateType } from '../../shared/enum/common.enum';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class AccountService {
@@ -14,8 +14,8 @@ export class AccountService {
 
     //Dont allow to add more than 2 accounts
     //Todo - Add subsscription service
-    if (accounts?.length === 3) {
-      throw new BadRequestException('Cannot add more than 3 accounts');
+    if (accounts?.length === 2) {
+      throw new BadRequestException('Cannot add more than 2 accounts');
     }
 
     // Else create account

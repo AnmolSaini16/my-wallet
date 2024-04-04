@@ -13,7 +13,7 @@ export const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: "MyWallet",
-  description: "",
+  description: "Manage your expenses",
 };
 
 export default async function RootLayout({
@@ -25,9 +25,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        suppressHydrationWarning={true}
+        suppressHydrationWarning
         className={cn(
-          "min-h-screen bg-background font-sans antialiased dark",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >

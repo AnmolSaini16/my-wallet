@@ -6,7 +6,7 @@ import {
   IsString,
   Length,
 } from 'class-validator';
-import { BankGroupEnum } from 'src/shared/enum/expense.enum';
+import { BankGroupEnum } from '../../shared/enum/expense.enum';
 
 export class AddAccountDto {
   @IsString()
