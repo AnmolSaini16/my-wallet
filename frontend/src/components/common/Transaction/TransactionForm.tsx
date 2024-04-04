@@ -3,8 +3,8 @@
 import { format } from "date-fns";
 import { CalendarIcon, AlertCircle, Loader2 } from "lucide-react";
 import React, { SetStateAction } from "react";
+import { SubmitHandler, UseFormReturn } from "react-hook-form";
 
-import loading from "@/app/(dashboard)/loading";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -42,7 +42,6 @@ import {
   TransactionTagEnum,
 } from "@/constants/enum/transaction.enum";
 import { cn } from "@/lib/utils";
-import { SubmitHandler, UseFormReturn } from "react-hook-form";
 import { Account } from "@/types/accounts.types";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -69,7 +68,6 @@ const TransactionForm = ({
   formName,
   disabled = false,
 }: Props) => {
-  console.log(accountsList);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[650px]">
