@@ -38,7 +38,6 @@ next-env.d.ts
 
 
 # compiled output
-dist
 node_modules
 
 # Logs
