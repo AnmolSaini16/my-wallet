@@ -4,11 +4,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { hash } from 'bcrypt';
-import { IsMongoId, Validator } from 'class-validator';
 
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from 'src/shared/dto/createUser.dto';
-import { UpdateUserDto } from 'src/shared/dto/updateUser.dto';
+import { IsMongoId, Validator } from 'class-validator';
+import { PrismaService } from '../../prisma/prisma.service';
+import { CreateUserDto } from '../../shared/dto/createUser.dto';
+import { UpdateUserDto } from '../../shared/dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
