@@ -112,7 +112,7 @@ const TransactionForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Account</FormLabel>
-                    {false ? (
+                    {!accountsList?.length ? (
                       <Skeleton className="h-10 w-full" />
                     ) : (
                       <Select
