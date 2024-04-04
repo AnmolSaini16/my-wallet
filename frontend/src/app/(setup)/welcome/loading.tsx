@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center w-full h-[calc(100vh-100px)] p-2">
+    <div className="flex justify-center items-center w-full h-full py-4 px-2">
       <Card className="w-[650px]">
         <CardHeader>
           <CardTitle>

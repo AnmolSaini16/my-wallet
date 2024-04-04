@@ -1,13 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -27,13 +21,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import AddedAccountList from "./AddedAccountList";
 import { useState } from "react";
 
-type SetupForm = {
+export type AddAccountForm = {
   account: string;
   balance: string | number;
   group: BankGroupEnum;
 };
 
-const intitialValues: SetupForm = {
+const intitialValues: AddAccountForm = {
   account: "",
   balance: "",
   group: BankGroupEnum.BankAccount,
@@ -45,17 +39,17 @@ export default function SetupContainer({
   accounts: Account[] | undefined;
 }) {
   const router = useRouter();
-  const form = useForm<SetupForm>({ defaultValues: intitialValues });
+  const form = useForm<AddAccountForm>({ defaultValues: intitialValues });
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleAddAccount: SubmitHandler<SetupForm> = async (data) => {
+  const handleAddAccount: SubmitHandler<AddAccountForm> = async (data) => {
     setLoading(true);
     const payload = {
       ...data,
       balance: +data.balance,
     };
     try {
-      const response = await addAccount<SetupForm>(payload);
+      const response = await addAccount<Partial<Account>>(payload);
       if (response?.status === 201) {
         toast({
           title: `Account ${data.account} saved`,
@@ -138,7 +132,7 @@ export default function SetupContainer({
                         placeholder="Balance"
                         type="number"
                         step="0.01"
-                        min={0}
+                        min={1}
                       />
                     </FormControl>
                   </FormItem>
@@ -146,14 +140,14 @@ export default function SetupContainer({
               />
 
               <div className="col-span-5 justify-self-end flex items-center gap-4">
-                {accounts?.length === 3 && (
+                {accounts?.length === 2 && (
                   <p className="text-xs text-red-600">
-                    Max 3 accounts can be added in Free version
+                    Max 2 accounts can be added in Free version
                   </p>
                 )}
                 <Button
                   type="submit"
-                  disabled={accounts?.length === 3 || loading}
+                  disabled={accounts?.length === 2 || loading}
                 >
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Save Account

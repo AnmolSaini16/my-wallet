@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { CalendarIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "./MobileNav";
+import { ModeToggle } from "./ThemeModeToggle";
 
 type Props = {
   userNav?: boolean;
@@ -44,7 +45,9 @@ const NavBar = ({ userNav = true }: Props) => {
             {format(new Date().toISOString(), "PPP")}
           </Button>
         )}
+
         <NavMenu />
+        <ModeToggle />
       </div>
       {showMobileMenu && <MobileNav />}
     </nav>
