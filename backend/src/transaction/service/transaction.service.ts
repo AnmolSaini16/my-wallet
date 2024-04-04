@@ -1,18 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-import type { Transaction } from '@prisma/client';
-
-import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTransactionDto } from '../dto/createTransaction';
-import { AccountService } from 'src/account/service/account.service';
-import { TransactionTypeEnum } from 'src/shared/enum/expense.enum';
 import { EditTransactionDto } from '../dto/editTransaction.dto';
+import { DeleteTransactionDto } from '../dto/deleteTransaction.dto';
+import { TransactionSearchQuery } from '../query/transactionsSearchQuery';
+import { AccountService } from '../../account/service/account.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import {
   BankBalanceUpdateType,
   ErrorMessage,
-} from 'src/shared/enum/common.enum';
-import { DeleteTransactionDto } from '../dto/deleteTransaction.dto';
-import { TransactionSearchQuery } from '../query/transactionsSearchQuery';
+} from '../../shared/enum/common.enum';
+import { TransactionTypeEnum } from '../../shared/enum/expense.enum';
+import { Transaction } from '@prisma/client';
 
 @Injectable()
 export class TransactionService {
