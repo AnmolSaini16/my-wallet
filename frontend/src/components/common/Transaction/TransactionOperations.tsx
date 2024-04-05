@@ -61,27 +61,25 @@ const TransactionOperations = ({ transaction, triggerBtn }: Props) => {
             <AlertDialogTitle>
               Are you sure you want to delete this transaction?
             </AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone.
+            <AlertDialogDescription className="text-red-600 py-2">
+              Note: This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async (event) => {
                 event.preventDefault();
                 setIsDeleteLoading(true);
                 const deleted = await deleteTransaction({
-                  payload: { transactionId: transaction.id },
+                  transactionId: transaction.id,
                 });
                 if (deleted.status === 200) {
-                  setIsDeleteLoading(false);
                   setShowDeleteAlert(false);
                   router.refresh();
                 }
+                setIsDeleteLoading(false);
               }}
               disabled={isDeleteLoading}
-              className="bg-red-600 focus:ring-red-600"
             >
               {isDeleteLoading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -90,6 +88,7 @@ const TransactionOperations = ({ transaction, triggerBtn }: Props) => {
               )}
               <span>Delete</span>
             </AlertDialogAction>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

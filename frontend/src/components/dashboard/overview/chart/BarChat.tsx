@@ -2,6 +2,7 @@
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -27,6 +28,7 @@ const BarChat = ({ transactions }: Props) => {
       ) : (
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.2} />
             <XAxis
               dataKey="name"
               stroke="#888888"
