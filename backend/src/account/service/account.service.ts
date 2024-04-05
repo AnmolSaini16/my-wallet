@@ -36,6 +36,19 @@ export class AccountService {
   async editAccount(dto: EditAccountDto, userId: string) {
     const { id, ...restEditedData } = dto;
 
+    //find previous account and check if names is changed
+    const account = await this.getBankAccountFromAccountId(dto.id);
+
+    //if name is changed update all transactions if new name
+    if (account.account !== dto.account) {
+      await this.prismaSerice.transaction.updateMany({
+        where: { accountId: dto.id },
+        data: {
+          accountName: dto.account,
+        },
+      });
+    }
+
     return this.prismaSerice.account.update({
       where: { id, userId },
       data: {
