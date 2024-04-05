@@ -3,6 +3,7 @@ import { AddAccountDto } from '../dto/addAccount.dto';
 import { EditAccountDto } from '../dto/editAccount.dto';
 import { BankBalanceUpdateType } from '../../shared/enum/common.enum';
 import { PrismaService } from '../../prisma/prisma.service';
+import { DeleteAccountDTO } from '../dto/deleteAccount.dto';
 
 @Injectable()
 export class AccountService {
@@ -41,6 +42,24 @@ export class AccountService {
         ...restEditedData,
       },
     });
+  }
+
+  async deleteAccount(dto: DeleteAccountDTO, userId: string) {
+    const userAccounts = await this.getUserAccociatedBankAccounts(userId);
+    if (userAccounts.length === 1) {
+      throw new BadRequestException(
+        'At least one account must remain active and cannot be deleted.',
+      );
+    }
+
+    const deleteTransactions = this.prismaSerice.transaction.deleteMany({
+      where: { accountId: dto.id, userId },
+    });
+
+    const deleteAccount = this.prismaSerice.account.delete({
+      where: { id: dto.id, userId },
+    });
+    return this.prismaSerice.$transaction([deleteTransactions, deleteAccount]);
   }
 
   async updateBalance(

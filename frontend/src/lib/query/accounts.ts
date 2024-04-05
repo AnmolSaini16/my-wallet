@@ -1,5 +1,5 @@
 import { ApiNamesEnum } from "@/constants/enum/api.enum";
-import { getData, patchData, postData } from "../actions";
+import { deleteData, getData, patchData, postData } from "../actions";
 import { Account } from "@/types/accounts.types";
 
 export const getAllAccounts = async (): Promise<Account[] | undefined> => {
@@ -17,4 +17,10 @@ export const addAccount = async <T>(payload: T): Promise<Response> => {
 
 export const editAccount = async <T>(payload: T): Promise<Response> => {
   return patchData(ApiNamesEnum.Accounts, payload);
+};
+
+export const deleteAccount = async (payload: {
+  id: string;
+}): Promise<Response> => {
+  return deleteData(ApiNamesEnum.Accounts, payload);
 };

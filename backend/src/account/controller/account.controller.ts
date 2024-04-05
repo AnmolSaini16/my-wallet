@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { AddAccountDto } from '../dto/addAccount.dto';
 import { AccountService } from '../service/account.service';
@@ -6,6 +14,7 @@ import { EditAccountDto } from '../dto/editAccount.dto';
 import { AuthGuard } from '../../auth/guard/auth.guard';
 import { User } from '../../shared/decorator/user.decorator';
 import { UserDto } from '../../shared/dto/user.dto';
+import { DeleteAccountDTO } from '../dto/deleteAccount.dto';
 
 @UseGuards(AuthGuard)
 @Controller('account')
@@ -20,6 +29,11 @@ export class AccountController {
   @Patch()
   async editAccount(@Body() dto: EditAccountDto, @User() user: UserDto) {
     return this.accountService.editAccount(dto, user.id);
+  }
+
+  @Delete()
+  async deleteAccount(@Body() dto: DeleteAccountDTO, @User() user: UserDto) {
+    return this.accountService.deleteAccount(dto, user.id);
   }
 
   @Get()
