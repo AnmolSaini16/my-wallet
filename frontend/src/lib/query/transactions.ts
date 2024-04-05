@@ -37,10 +37,8 @@ export const editTransaction = async <T>(payload: T): Promise<Response> => {
   return putData(ApiNamesEnum.Transaction, payload);
 };
 
-export const deleteTransaction = async ({
-  payload,
-}: {
-  payload: { transactionId: string };
+export const deleteTransaction = async (payload: {
+  transactionId: string;
 }): Promise<Response> => {
   return deleteData(ApiNamesEnum.Transaction, payload);
 };

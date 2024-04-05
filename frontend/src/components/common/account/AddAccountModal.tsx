@@ -2,7 +2,7 @@
 
 import { CheckCircle2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { AddAccountForm } from "@/app/(setup)/welcome/_components/SetupContainer";
@@ -63,6 +63,10 @@ const AddAccountModal = ({ disabled }: Props) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    form.reset(intitialValues);
+  }, [showAddModel]);
 
   return (
     <>
