@@ -13,6 +13,9 @@ export default withAuth(
       return NextResponse.redirect(new URL(`/welcome`, req.url));
     }
 
+    if (lastLogin && isWelcomePage) {
+      return NextResponse.redirect(new URL(`/`, req.url));
+    }
     return NextResponse.next();
   },
   {

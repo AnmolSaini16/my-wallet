@@ -33,6 +33,7 @@ const FooterBtn = ({ disabled }: Props) => {
     ]);
 
     setLoading(false);
+    router.refresh(); //refetch session
     router.push("/");
   };
 
